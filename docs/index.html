@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
+    <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
   </head>
   <body>
     <style>
@@ -1025,6 +1027,8 @@
        maxZoom: 18
      }).addTo(map);
 
+     map.addControl(new L.Control.Fullscreen());
+
      for (var i = 0; i < locations.length; i++) {
        var loc = locations[i];
        L.marker(new L.LatLng(loc[2], loc[3]))
@@ -1040,6 +1044,13 @@
      };
 
      info.addTo(map);
+
+     map.scrollWheelZoom.disable();
+
+     if (L.Browser.mobile) {
+       map.tap.disable();
+       map.dragging.disable();
+     }
     </script>
 
   </body>
