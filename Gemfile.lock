@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    geocoder (1.4.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  geocoder (~> 1.4, >= 1.4.4)
+
+BUNDLED WITH
+   1.15.4
