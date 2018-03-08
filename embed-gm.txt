@@ -1,0 +1,3 @@
+<div style="max-width: 100%; margin-bottom: 20px">
+  <iframe src="https://www.google.com/maps/d/embed?mid=1EfaOuLYY05f_nQx55IzLPbmWDfpClmvy" style="border:0; width: 100%; height: 100%" allowfullscreen></iframe>
+</div>

@@ -1,0 +1,92 @@
+.leaflet-control-search.search-exp {/*expanded*/
+  background: #fff;
+}
+.leaflet-control-search .search-input {
+  font-family: Arial;
+  font-size: 12px;
+  display:block;
+  float:left;
+  background: #fff;
+  border:1px solid #ccc;
+  height:26px;
+  padding:0 2px 0 2px;
+  margin:3px 0 2px 3px;
+  border-radius: 0;
+  box-shadow: 0;
+  box-sizing: border-box;
+  min-width: 100px;
+}
+.leaflet-control-search .search-input:focus {
+  border:1px solid #ccc;
+  outline: none;
+}
+.leaflet-control-search.search-load .search-input {
+  background: url('loader.gif') no-repeat center right #fff;
+}
+.leaflet-control-search.search-load .search-cancel {
+  visibility:hidden;
+}
+.leaflet-control-search .search-cancel {
+  display:block;
+  width:0;
+  height:0;
+  position:absolute;
+  right:0;
+  opacity: 0;
+}
+.leaflet-control-search .search-cancel span {
+  display:none;
+}
+.leaflet-control-search .search-button {
+  display:block;
+  float:left;
+  width:26px;
+  height:26px;
+  background: url('search-icon.png') no-repeat 2px 2px #fff;
+  border: 0;
+}
+.leaflet-control-search .search-button:hover {
+  border: 0;
+}
+.leaflet-control-search .search-tooltip {
+  position:absolute;
+  top:100%;
+  left:0;
+  float:left;
+  list-style: none;
+  padding-left: 0;
+  min-width:120px;
+  max-height:139px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index:1010;
+  overflow-y:auto;
+  overflow-x:hidden;
+  cursor: pointer;
+}
+.leaflet-control-search .search-tip {
+  margin:1px;
+  padding:2px 4px;
+  display:block;
+  color:black;
+  background: #efefef;
+  text-decoration:none;
+  white-space:nowrap;
+  vertical-align:center;
+}
+.leaflet-control-search .search-button:hover {
+  background-color: #fff;
+}
+.leaflet-control-search .search-tip-select,
+.leaflet-control-search .search-tip:hover {
+  background-color: #fff;
+}
+.leaflet-control-search .search-alert {
+  cursor:pointer;
+  clear:both;
+  font-size:.75em;
+  margin-bottom:5px;
+  padding:0 .25em;
+  color:#e00;
+  font-weight:bold;
+  border-radius:.25em;
+}

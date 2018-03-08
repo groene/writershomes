@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+    <link rel="stylesheet" href="./leaflet-search.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
     <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+    <script src="./leaflet-search.src.js"></script>
   </head>
   <body>
     <style>
@@ -48,7 +50,7 @@
     </style>
     <script>
      var locations = [
-        [
+       [
          "Jane Austen (1775-1817)",
          "The Jane Austen Centre, Bath",
          51.38500459999999,
@@ -1077,22 +1079,47 @@
     <div id="map"></div>
 
     <script>
-     var map = L.map("map", {
-       fullscreenControl: {
-         pseudoFullscreen: false
-       }
-     }).setView([52.6360564, -1.2013116], 7);
+     if (L.Browser.mobile) {
+       var map = L.map("map");
+       map.dragging.disable();
+     } else {
+       var map = L.map("map", {
+         fullscreenControl: {
+           pseudoFullscreen: false
+         }
+       })
+       map.scrollWheelZoom.disable();
+     };
+
+     map.setView([52.6360564, -1.2013116], 7);
 
      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
        maxZoom: 18
      }).addTo(map);
 
+     var markersLayer = new L.LayerGroup();
+     map.addLayer(markersLayer);
+
+     var searchControl = new L.Control.Search({
+       layer: markersLayer,
+       initial: false,
+       zoom: 11,
+       marker: false,
+       textPlaceholder: "Search author...",
+       textErr: "Author not found",
+       delayType: 200
+     }).addTo(map);
+
+     searchControl.on("search:locationfound", function(e) {
+       e.layer.openPopup();
+     });
+
      for (var i = 0; i < locations.length; i++) {
        var loc = locations[i];
-       L.marker(new L.LatLng(loc[2], loc[3]))
-        .addTo(map)
-        .bindPopup("<h1>" + loc[0] + "</h1><p class='location'>" + loc[1] + "</p><p>" + loc[4] + "</p>");
+       var marker = L.marker(new L.LatLng(loc[2], loc[3]), {title: loc[0]});
+       marker.bindPopup("<h1>" + loc[0] + "</h1><p class='location'>" + loc[1] + "</p><p>" + loc[4] + "</p>");
+       markersLayer.addLayer(marker);
      }
 
      var info = L.control({position: "topright"});
@@ -1103,13 +1130,6 @@
      };
 
      info.addTo(map);
-
-     map.scrollWheelZoom.disable();
-
-     if (L.Browser.mobile) {
-       map.tap.disable();
-       map.dragging.disable();
-     }
     </script>
 
   </body>
