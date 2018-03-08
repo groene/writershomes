@@ -1081,13 +1081,8 @@
     <script>
      if (L.Browser.mobile) {
        var map = L.map("map");
-       map.dragging.disable();
      } else {
-       var map = L.map("map", {
-         fullscreenControl: {
-           pseudoFullscreen: false
-         }
-       })
+       var map = L.map("map", {fullscreenControl: {pseudoFullscreen: false}});
        map.scrollWheelZoom.disable();
      };
 
