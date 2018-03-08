@@ -152,7 +152,7 @@ L.Control.Search = L.Control.extend({
 		this._input = this._createInput(this.options.textPlaceholder, 'search-input');
 		this._tooltip = this._createTooltip('search-tooltip');
 		this._cancel = this._createCancel(this.options.textCancel, 'search-cancel');
-		this._button = this._createButton(this.options.textPlaceholder, 'search-button');
+		this._button = this._createButton(this.options.textPlaceholder, 'search-button leaflet-bar-part');
 		this._alert = this._createAlert('search-alert');
 
 		if(this.options.collapsed===false)
